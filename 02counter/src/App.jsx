@@ -18,6 +18,10 @@ function App() {
   const removeValue = () => {
     setCounter(counter - 1)
   }
+
+  const resetValue = () => {
+    setCounter(0)
+  }
  
   return (
       <>
@@ -32,6 +36,11 @@ function App() {
         <button
         onClick={removeValue}
         >remove value</button>  
+        <br />
+
+        <button
+        onClick={resetValue}
+        >Value reseted</button>
 
         <p>footer: {counter}</p>   
 
