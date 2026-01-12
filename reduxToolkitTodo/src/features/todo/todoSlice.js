@@ -27,7 +27,7 @@ export const todoSlice = createSlice({
 
         // Removes a todo based on the ID passed in action.payload
         removeTodo: (state, action) => {
-            state.todos = state.todos.filter(                         
+            state.todos = state.todos.filter(
                 (todo) => todo.id !== action.payload
             );
         },
@@ -35,14 +35,27 @@ export const todoSlice = createSlice({
         // Updates an existing todo's text
         updateTodo: (state, action) => {
             // action.payload carries data from UI → reducer
-            const { id, text } = action.payload;
-            const existingTodo = state.todos.find(
-                (todo) => todo.id === id
-            );
+
+            const id = action.payload.id;
+            const text = action.payload.text;
+
+            // .find() is a JavaScript array method.
+
+            // What .find() does (in simple words)
+
+            // 👉 It searches an array and returns the FIRST element that matches a condition.
+
+            // If nothing matches, it returns undefined.
+
+            const existingTodo = state.todos.find(function (todo) {
+                return todo.id === id;
+            });
+
             if (existingTodo) {
                 existingTodo.text = text;
             }
         }
+
     }
 });
 

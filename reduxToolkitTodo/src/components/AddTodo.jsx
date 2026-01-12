@@ -1,17 +1,27 @@
-import React, {useState} from 'react'                // useState is a React hook that allows us to add state to functional components.
-import {useDispatch} from 'react-redux'              // useDispatch is a hook that gives access to the dispatch function from the Redux store.
-import {addTodo} from '../features/todo/todoSlice'   // Importing the addTodo action creator to dispatch actions to add new todos.
+import React, { useState } from 'react'                // useState is a React hook that allows us to add state to functional components.
+import { useDispatch } from 'react-redux'              // useDispatch is a hook that gives access to the dispatch function from the Redux store.
+import { addTodo } from '../features/todo/todoSlice'   // Importing the addTodo action creator to dispatch actions to add new todos.
 
 function AddTodo() {
 
-    const [input, setInput] = useState('')
-    const dispatch = useDispatch()                   // dispatch is used to send value
+  const [input, setInput] = useState('')
+  const dispatch = useDispatch()                   // dispatch is used to send value
 
-    const addTodoHandler = (e) => {
-        e.preventDefault()
-        dispatch(addTodo(input))                 // Dispatching the addTodo action with the current input value as payload.
-        setInput('')                             // Clear the input field after adding the todo.
-    }
+
+  // Think of it like this 🧠
+  // UI responsibility:
+
+  // “User typed THIS text”
+
+  // Redux responsibility:
+
+  // “Create a todo with id + text”
+
+  const addTodoHandler = (e) => {
+    e.preventDefault()
+    dispatch(addTodo(input))                 // Dispatching the addTodo action (here text only) with the current input value as payload.
+    setInput('')                             // Clear the input field after adding the todo.
+  }
 
   return (
     <form onSubmit={addTodoHandler} className="space-x-3 mt-12">
