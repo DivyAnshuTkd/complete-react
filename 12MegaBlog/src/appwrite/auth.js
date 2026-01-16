@@ -1,4 +1,4 @@
-// Services
+// Authentication service using Appwrite SDK
 
 import conf from '../conf.js'
 import { Client, Account, ID } from "appwrite";      // Client and Account are class and ID is helper or utility object
@@ -31,7 +31,7 @@ export class AuthService{
         }
     }
 
-    async login({email, password}){
+    async login({email, password}){                // passing object with email and password as an argument. Destructuring.
         try {
             return await this.account.createEmailPasswordSession
             (email, password);
