@@ -26,6 +26,12 @@ export const todoSlice = createSlice({
         },
 
         // Removes a todo based on the ID passed in action.payload
+
+        // This looks like we are changing the state directly,
+        // but Redux Toolkit uses Immer to handle immutability.
+        // The original state remains unchanged,
+        // and a new updated state is created automatically.
+
         removeTodo: (state, action) => {
             state.todos = state.todos.filter(
                 (todo) => todo.id !== action.payload
@@ -60,7 +66,7 @@ export const todoSlice = createSlice({
 });
 
 // Exporting the reducers individually because individual components can need any of the reducer as per the need.
-export const { addTodo, removeTodo, updateTodo } = todoSlice.actions;
+export const { addTodo, removeTodo, updateTodo } = todoSlice.actions;       // methods in reducer are called actions. Here acitons are addTodo, removeTodo, updateTodo. We export them to use in our components.
 
 // Exporting the reducer to be used in the Redux store
 export default todoSlice.reducer;

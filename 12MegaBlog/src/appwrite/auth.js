@@ -1,6 +1,6 @@
 // Authentication service using Appwrite SDK
 
-import conf from '../conf.js'
+import conf from '../conf/conf.js'
 import { Client, Account, ID } from "appwrite";      // Client and Account are class and ID is helper or utility object
 
 export class AuthService{
