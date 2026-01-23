@@ -15,6 +15,8 @@ export class AuthService{
         this.account = new Account(this.client);    // creating account object. this.client is passed to Account class constructor. client object is passed to account after setting endpoint and project id into client object.
     }
 
+    // async wraps values into Promises, await unwraps Promises into values. Simply, async await return Promises.
+    
     async createAccount({email, password, name}){            // crateAccount is a method and we don't use function keyword here because this is class method.
         try{
             const userAccount = await this.account.create(ID.unique(), email, password, name);            
@@ -43,7 +45,7 @@ export class AuthService{
 
     async getCurrentUser(){           // to get details of current logged in user
         try{
-            return await this.account.get();        // returns details of current logged in user
+            return await this.account.get();        // returns details of current logged in user as a Promise
         }
         catch (error){
             console.log("Appwrite service :: getCurrentUser :: error", error);
@@ -54,7 +56,7 @@ export class AuthService{
 
     async logout(){
         try{
-            await this.account.deleteSessions();
+            await this.account.deleteSessions();             // deletes all active user sessions and returns a Promise
         }
         catch{
             console.log("Appwrite service :: logout :: error", error);
